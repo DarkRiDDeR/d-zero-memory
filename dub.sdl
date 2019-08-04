@@ -1,0 +1,6 @@
+name "zero-memory"
+description "This is a function implementation SecureZeroMemory in D programming language"
+license "DarkRiDDeR"
+copyright "Copyright © 2019, DarkRiDDeR"
+license "MIT License"
+targetType "library"
