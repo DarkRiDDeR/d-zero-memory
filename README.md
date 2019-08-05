@@ -1,6 +1,5 @@
 [![Dub](https://img.shields.io/dub/v/zero-memory.svg?style=flat)](https://code.dlang.org/packages/zero-memory)
 [![Build Status](https://travis-ci.org/DarkRiDDeR/d-zero-memory.svg?branch=master)](https://travis-ci.org/DarkRiDDeR/d-zero-memory)
-[![GitHub tag](https://img.shields.io/github/tag/DarkRiDDeR/d-zero-memory.svg?maxAge=86400)](https://github.com/DarkRiDDeR/d-zero-memory/releases)
 [![License](https://img.shields.io/github/license/DarkRiDDeR/d-zero-memory.svg?style=flat)](https://github.com/DarkRiDDeR/d-zero-memory/blob/master/LICENSE)
 
 # D Zero Memory
