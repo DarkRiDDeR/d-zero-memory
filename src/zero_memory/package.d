@@ -31,12 +31,12 @@ module zero_memory;
 * as some compilers can optimize a call to ZeroMemory by removing it entirely.
 */
 void secureZeroMemory (void *p, in size_t length)
-pure nothrow @safe @nogc
+pure nothrow @nogc
 {
     version (D_InlineAsm_X86_64)
     {
         asm
-        pure nothrow @trusted @nogc
+        pure nothrow @nogc
         {
             mov RBX, [p];
             mov RDX, p;
@@ -51,7 +51,7 @@ pure nothrow @safe @nogc
     else version (D_InlineAsm_X86)
     {
         asm
-        pure nothrow @trusted @nogc
+        pure nothrow @nogc
         {
             mov EBX, [p];
             mov EDX, p;
