@@ -27,6 +27,8 @@ module zero_memory;
 /**
 * Fills a block of memory with zeros. It is designed to be a more secure version of ZeroMemory.
 *
+* !!! function secureZeroMemory processes data by byte.
+*
 * Use this function instead of ZeroMemory when you want to ensure that your data will be overwritten promptly,
 * as some compilers can optimize a call to ZeroMemory by removing it entirely.
 */
@@ -79,4 +81,14 @@ unittest
 
     secureZeroMemory(ar2.ptr, ar2.length);
     assert(ar == ar2);
+
+
+    uint[] i  = [0, 0, 0,  0, 0 ];
+    uint[] i2 = [8, 5, 99, 5, 99];
+    // !!! function secureZeroMemory processes data by byte. Therefore, it is wrong:
+    secureZeroMemory(i2.ptr, i2.length);
+    assert(i != i2);
+    // Need to calculate the length:
+    secureZeroMemory(i2.ptr, i2.sizeof * i2.length);
+    assert(i == i2);
 }

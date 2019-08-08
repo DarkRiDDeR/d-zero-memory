@@ -28,6 +28,16 @@ ubyte[] ar2 = [1, 2, 3, 4, 5];
 
 secureZeroMemory(ar2.ptr, ar2.length);
 assert(ar == ar2);
+
+
+uint[] i  = [0, 0, 0,  0, 0 ];
+uint[] i2 = [8, 5, 99, 5, 99];
+// !!! function secureZeroMemory processes data by byte. Therefore, it is wrong:
+secureZeroMemory(i2.ptr, i2.length);
+assert(i != i2);
+// Need to calculate the length:
+secureZeroMemory(i2.ptr, i2.sizeof * i2.length);
+assert(i == i2);
 ```
 
 
