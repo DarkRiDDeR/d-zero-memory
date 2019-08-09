@@ -37,6 +37,11 @@ assert(i != i2);
 // Need to calculate the length:
 secureZeroMemory(i2.ptr, uint.sizeof * i2.length);
 assert(i == i2);
+
+// or use a cast to type void[]
+i2 = [8, 5, 99, 5, 99];
+secureZeroMemory(cast(void[])i2);
+assert(i == i2);
 ```
 
 

@@ -69,6 +69,15 @@ pure nothrow @nogc
         assert(0, "Only X86 and X86-64 platform supported");
 }
 
+void secureZeroMemory (void[] ar)
+pure nothrow @nogc
+{
+    if (ar.length == 0)
+        return;
+
+    secureZeroMemory(ar.ptr, ar.length);
+}
+
 
 unittest
 {
@@ -90,5 +99,10 @@ unittest
     assert(i != i2);
     // Need to calculate the length:
     secureZeroMemory(i2.ptr, uint.sizeof * i2.length);
+    assert(i == i2);
+
+    // or use a cast to type void[]
+    i2 = [8, 5, 99, 5, 99];
+    secureZeroMemory(cast(void[])i2);
     assert(i == i2);
 }
