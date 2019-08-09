@@ -89,6 +89,6 @@ unittest
     secureZeroMemory(i2.ptr, i2.length);
     assert(i != i2);
     // Need to calculate the length:
-    secureZeroMemory(i2.ptr, i2.sizeof * i2.length);
+    secureZeroMemory(i2.ptr, uint.sizeof * i2.length);
     assert(i == i2);
 }
