@@ -65,8 +65,15 @@ pure nothrow @nogc
             loop iter;
         }
     }
+    else version (LDC)
+    {
+        import ldc.intrinsics : llvm_memset;
+        llvm_memset(p, 0, length, true); // The "true" means volatile.
+    }
     else
-        assert(0, "Only X86 and X86-64 platform supported");
+    {
+        assert(0, "Only DMD and LDC compilers supported");
+    }
 }
 
 void secureZeroMemory (void[] ar)
