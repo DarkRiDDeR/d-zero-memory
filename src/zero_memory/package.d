@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2019 DarkRiDDeR
+Copyright (c) 2019-23 DarkRiDDeR, n8sh
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@ pure nothrow @nogc
             mov RCX, length;
             iter:
             xor RBX, RBX;
-            mov [RDX], RBX;
+            mov [RDX], BL;
             inc RDX;
             loop iter;
         }
@@ -60,7 +60,7 @@ pure nothrow @nogc
             mov ECX, length;
             iter:
             xor EBX, EBX;
-            mov [EDX], EBX;
+            mov [EDX], BL;
             inc EDX;
             loop iter;
         }
@@ -126,4 +126,16 @@ unittest
     i2 = [8, 5, 99, 5, 99];
     secureZeroMemory(cast(void[])i2);
     assert(i == i2);
+
+    // Verify that secureZeroMemory doesn't have a buffer overrun.
+    ubyte[17] array;
+    array[] = 1;
+    ubyte[] slice = array[1..$-1];
+    secureZeroMemory(slice);
+    // Slice should be 0.
+    foreach (b; slice)
+        assert(b == 0);
+    // Bytes outside slice should be 1.
+    assert(array[0] == 1);
+    assert(array[$-1] == 1);
 }
